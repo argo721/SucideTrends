@@ -33,7 +33,28 @@ ax.set_xticklabels(
     ax.get_xticklabels(),
     rotation=45,
     horizontalalignment='right'
-);
+)
 
 plt.title("Correlation between numerical values")
 plt.show()
+
+
+#Selecting unique countries list
+
+df_countries = df_DataSet['country'].unique().tolist()
+print("No. of available countries:"+ str(len(df_countries)))
+print("\n list of countries:")
+print(df_countries)
+completeDataSet.set_index(keys=['country'], drop=False, inplace=True)
+
+print(completeDataSet.loc[completeDataSet.country=='Albania'])
+
+#creating dictionary. Spliting data set country wise
+dict_countryWise={"Albania":""}
+
+
+for i in range (0,len(df_countries)):
+    #print(df_countries[i])
+    dict_countryWise[df_countries[i]] =completeDataSet.loc[completeDataSet.country == df_countries[i]]
+
+print(len(dict_countryWise))
